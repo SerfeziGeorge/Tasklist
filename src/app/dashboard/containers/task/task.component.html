@@ -1,0 +1,11 @@
+<p>task works!</p>
+
+<div>
+  <app-task-template
+    [task]="task"
+    [isEdit]="isEdit"
+    (create)="onCreate($event)"
+    (update)="onUpdate($event)"
+    (delete)="onDelete($event)"
+  ></app-task-template>
+</div>

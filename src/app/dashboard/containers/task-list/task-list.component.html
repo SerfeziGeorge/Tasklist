@@ -1,0 +1,20 @@
+<p>task-list works!</p>
+
+<div>
+  <a routerLink="addTask"> +New task </a>
+  <h3>To be completed:</h3>
+  <ng-container
+    *ngIf="tasks?.length; then elements; else message"
+  ></ng-container>
+
+  <ng-template #elements>
+    <app-task-form
+      *ngFor="let task of tasks; trackBy: trackById"
+      [itemTask]="task"
+    ></app-task-form>
+  </ng-template>
+
+  <ng-template #message>
+    <p>No new task found....</p>
+  </ng-template>
+</div>

@@ -1,0 +1,62 @@
+<p>task-template works!</p>
+
+<!--
+  <form (ngSubmit)="handleSubmit(form)"  #form="ngForm">
+
+-->
+<form #form="ngForm">
+  <label>
+    <span>Task</span>
+    <input
+      type="text"
+      name="title"
+      required
+      minlength="3"
+      [ngModel]="task.title"
+      #taskElem="ngModel"
+    />
+
+    <br />
+    <ng-container *ngIf="taskElem.invalid && taskElem.touched">
+      <div *ngIf="taskElem.errors?.['required']">
+        A task must have a short description.
+      </div>
+      <div *ngIf="taskElem.errors?.['minlength']">
+        A task must have a minimum length of 3 characters.
+      </div>
+    </ng-container>
+  </label>
+
+  <!--
+   <button type="submit" [disabled]="form.invalid">Create todo</button>
+  
+    -->
+  <button type="button" *ngIf="!isEdit" (click)="handleCreate(form)">
+    Create todo
+  </button>
+
+  <button
+    type="button"
+    *ngIf="isEdit"
+    [disabled]="form.untouched"
+    (click)="handleUpdate(form)"
+  >
+    Update todo
+  </button>
+  <button type="button" *ngIf="isEdit" (click)="handleDelete()">
+    Delete todo
+  </button>
+
+  <br />
+  <br />
+  <pre>
+      {{ form.value | json }}
+   </pre
+  >
+
+  <br />
+  <pre>
+      {{ form.form.status | json }}
+   </pre
+  >
+</form>
